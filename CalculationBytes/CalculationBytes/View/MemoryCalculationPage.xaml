@@ -1,0 +1,120 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:viewModels="clr-namespace:CalculationBytes.ViewModel" 
+             xmlns:local="clr-namespace:CalculationBytes.Converter"
+             xmlns:Tran="clr-namespace:CalculationBytes.Services.Markup;assembly=CalculationBytes"
+             mc:Ignorable="d"
+             x:Class="CalculationBytes.View.MemoryCalculationPage">
+
+    <!--<ContentPage.BindingContext>
+        <viewModels:CalBitOrByteViewModelPage/>
+    </ContentPage.BindingContext>-->
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local:ButtonTriggerConverter x:Key="dataHasBeenEntered" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+
+    <ContentPage.Content>
+
+        <StackLayout>
+            <StackLayout VerticalOptions="CenterAndExpand" Margin="20" Spacing="20">
+
+                <Frame Style="{StaticResource FrameTransparent}">
+                    <StackLayout>
+                        <Label Text="{Tran:Translate Name=memory_size,ClassName=StringResource}" />
+                        <Entry x:Name="numberSize" Placeholder="{Tran:Translate Name=enter_number,ClassName=StringResource}" Text="{Binding NumberOfSize}" MaxLength="10"/>
+                    </StackLayout>
+                </Frame>
+
+                <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                    <Frame Style="{StaticResource FrameTransparent}" >
+                        <StackLayout>
+                            <Label Text="{Tran:Translate Name=from,ClassName=StringResource}" TextColor="White"/>
+                            <Frame>
+                                <Picker Title="{Tran:Translate Name=select_type,ClassName=StringResource}" ItemsSource="{Binding FromType}" ItemDisplayBinding="{Binding TypeNameForSelect}" 
+                                    SelectedItem="{Binding SelectFromType}" />
+                            </Frame>
+                        </StackLayout>
+                    </Frame>
+
+                    <StackLayout Spacing="0" VerticalOptions="Center">
+                        <Label Text="{Tran:Translate Name=switch,ClassName=StringResource}" FontSize="Micro" HorizontalOptions="Center"/>
+                        <ImageButton Source="ic_switch.png" BackgroundColor="Transparent" WidthRequest="50" Command="{Binding SwitchType_ClickCommand}"/>
+                    </StackLayout>
+
+                    <Frame Style="{StaticResource FrameTransparent}" BorderColor="{Binding FrameToPickerColor}" >
+                        <StackLayout>
+                            <Label Text="{Tran:Translate Name=to,ClassName=StringResource}" TextColor="White"/>
+                            <Frame>
+                                <Picker Title="{Tran:Translate Name=select_type,ClassName=StringResource}" ItemsSource="{Binding ToType}" ItemDisplayBinding="{Binding TypeNameForSelect}" 
+                                    SelectedItem="{Binding SelectToType}" />
+                            </Frame>
+                        </StackLayout>
+                    </Frame>
+
+                </StackLayout>
+                <Frame>
+                    <Button Text="{Tran:Translate Name=convert,ClassName=StringResource}" Command="{Binding Convert_ClickCommand}" >
+                        <!--<Button.Triggers>
+                            <DataTrigger TargetType="Button" Binding="{Binding Source={x:Reference numberSize},Path=Text,Converter={StaticResource dataHasBeenEntered}}" Value="true" >
+                                <Setter Property="IsEnabled" Value="True"/>
+                            </DataTrigger>
+                        </Button.Triggers>-->
+                    </Button>
+                </Frame>
+
+                <Frame Style="{StaticResource FrameTransparent}" Margin="0,40,0,0">
+                    <StackLayout Orientation="Vertical" HorizontalOptions="Center" Spacing="30" Margin="10,20">
+
+                        <Grid RowSpacing="0" ColumnSpacing="0" Margin="0,0,0,0" >
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="1" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Label Text="{Binding CountFrom}" HorizontalOptions="Center" Grid.Row="0" Grid.ColumnSpan="2" Style="{x:StaticResource Key=LabelResultByte}"/>
+                            <BoxView BackgroundColor="White" HeightRequest="1" Grid.Row="1" Grid.ColumnSpan="3"/>
+                            <Label Text="{Binding TypeFrom}" HorizontalOptions="Center" Grid.Row="0" Grid.Column="2"  VerticalOptions="End"/>
+                        </Grid>
+
+                        <Frame HorizontalOptions="Center" VerticalOptions="Center" Padding="20,10" BackgroundColor="Transparent" BorderColor="White">
+                            <Label Text="{Tran:Translate Name=equal,ClassName=StringResource}" FontSize="Large" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" FontAttributes="Bold" TextColor="White"/>
+                        </Frame>
+
+                        <Grid RowSpacing="0" ColumnSpacing="0" >
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="1" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Label Text="{Binding CountTo}" HorizontalOptions="Center" Grid.Row="0" Grid.ColumnSpan="2" Style="{x:StaticResource Key=LabelResultByte}" />
+                            <BoxView BackgroundColor="White" HeightRequest="1" Grid.Row="1" Grid.ColumnSpan="3" />
+                            <Label Text="{Binding TypeTo}" HorizontalOptions="Center" Grid.Row="0" Grid.Column="2" VerticalOptions="End"/>
+                        </Grid>
+
+                    </StackLayout>
+                </Frame>
+
+
+            </StackLayout>
+        </StackLayout>
+
+
+    </ContentPage.Content>
+</ContentPage>

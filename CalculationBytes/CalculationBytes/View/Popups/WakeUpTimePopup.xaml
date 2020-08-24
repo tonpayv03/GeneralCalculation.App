@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage  
+    xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup" 
+    xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup" 
+    xmlns:viewmodels="clr-namespace:CalculationBytes.ViewModel"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:Tran="clr-namespace:CalculationBytes.Services.Markup;assembly=CalculationBytes"
+    mc:Ignorable="d"
+    x:Class="CalculationBytes.View.Popups.WakeUpTimePopup">
+
+    <!--You can set an animation in the xaml file or in the csharp code behind-->
+    <pages:PopupPage.Animation>
+        <animations:ScaleAnimation 
+            PositionIn="Center"
+            PositionOut="Bottom"
+            ScaleIn="1.5"
+            ScaleOut="0.8"
+            DurationIn="400"
+            DurationOut="300"
+            EasingIn="SpringOut"
+            EasingOut="SpringIn"
+            HasBackgroundAnimation="True"/>
+    </pages:PopupPage.Animation>
+
+    <ContentPage.BindingContext>
+        <viewmodels:SleepCalculationViewModelPage />
+    </ContentPage.BindingContext>
+
+    <AbsoluteLayout>
+        <StackLayout VerticalOptions="Center" HorizontalOptions="Center" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1">
+            <Frame Padding="20,10">
+                <StackLayout Spacing="10">
+
+                    <Label Text="{Tran:Translate Name=wakes_up_time,ClassName=StringResource}" HorizontalOptions="Center" TextColor="#e0aa2d" FontAttributes="Bold"/>
+
+                    <Grid x:Name="gridContent" RowSpacing="5" ColumnSpacing="5" />
+
+                    <Label Margin="0,5,0,0" VerticalOptions="EndAndExpand" Text="{Tran:Translate Name=back,ClassName=StringResource}" HorizontalTextAlignment="Center" Style="{StaticResource Key=LabelBackTapped}" >
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="Back_Tapped" />
+                        </Label.GestureRecognizers>
+                    </Label>
+                </StackLayout>
+
+            </Frame>
+        </StackLayout>
+    </AbsoluteLayout>
+</pages:PopupPage>

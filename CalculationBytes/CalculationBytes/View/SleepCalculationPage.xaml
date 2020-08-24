@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:Tran="clr-namespace:CalculationBytes.Services.Markup;assembly=CalculationBytes"
+             xmlns:viewModels="clr-namespace:CalculationBytes.ViewModel"
+             mc:Ignorable="d"
+             x:Class="CalculationBytes.View.SleepCalculationPage">
+
+    <ContentPage.BindingContext>
+        <viewModels:SleepCalculationViewModelPage/>
+    </ContentPage.BindingContext>
+
+    <ContentPage.Content>
+        <Grid>
+            <StackLayout>
+                <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" Margin="20" Spacing="20">
+                    <Label Text="{Tran:Translate Name=want_to_wake_up,ClassName=StringResource}" HorizontalOptions="Center" />
+
+                    <Frame Style="{StaticResource FrameTransparent}">
+                        <StackLayout>
+                            <StackLayout Orientation="Horizontal">
+                                <Frame BorderColor="{Binding FrameFilePickerColor}">
+                                    <Picker Title="{Tran:Translate Name=hours,ClassName=StringResource}" FontSize="Small" WidthRequest="85" ItemsSource="{Binding HoursList}"
+                                    SelectedItem="{Binding Select_Hours}" />
+                                </Frame>
+                                <Frame BorderColor="{Binding FrameFilePickerColor}">
+                                    <Picker Title="{Tran:Translate Name=minute,ClassName=StringResource}" FontSize="Small" WidthRequest="85" ItemsSource="{Binding MinuteList}"
+                                    SelectedItem="{Binding Select_Minute}" />
+                                </Frame>
+                                <Frame BorderColor="{Binding FrameFilePickerColor}">
+                                    <Picker Title="{Tran:Translate Name=time_format,ClassName=StringResource}" FontSize="Small" WidthRequest="85" ItemsSource="{Binding TimeFormatList}"
+                                    SelectedItem="{Binding Select_Time_Format}" />
+                                </Frame>
+                            </StackLayout>
+                        </StackLayout>
+                    </Frame>
+
+                    <Frame BackgroundColor="#3d2d71">
+                        <Button Text="{Tran:Translate Name=i_go_to_bed,ClassName=StringResource}" Command="{Binding GoToBed_ClickCommand}" BackgroundColor="#3d2d71" TextColor="White"/>
+                    </Frame>
+
+                    <Label Text="{Tran:Translate Name=go_to_sleep_now,ClassName=StringResource}" HorizontalOptions="Center" />
+
+                    <Frame BackgroundColor="#e0aa2d">
+                        <Button Text="{Tran:Translate Name=i_get_up,ClassName=StringResource}" Command="{Binding WakeUpTime_ClickCommand}"  BackgroundColor="#e0aa2d" TextColor="White"/>
+                    </Frame>
+
+                </StackLayout>
+            </StackLayout>
+            
+            <Grid x:Name="IsLoadingPanel" IsVisible="{Binding IsLoadingPanel}" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1">
+                <BoxView BackgroundColor="Black" Opacity="0.05" />
+                <ActivityIndicator Color="White" WidthRequest="10" Scale="0.1" IsRunning="True" />
+            </Grid>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Application xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="CalculationBytes.App">
+    <Application.Resources>
+
+        <Style TargetType="Frame">
+            <Setter Property="BackgroundColor" Value="White"/>
+            <Setter Property="Padding" Value="5" />
+            <Setter Property="CornerRadius" Value="8" />
+        </Style>
+
+        <Style TargetType="Frame" x:Key="FrameTransparent">
+            <Setter Property="BackgroundColor" Value="Transparent"/>
+            <Setter Property="BorderColor" Value="White" />
+            <Setter Property="Padding" Value="5" />
+            <Setter Property="CornerRadius" Value="10" />
+        </Style>
+
+        <Style TargetType="Button">
+            <Setter Property="BackgroundColor" Value="White" />
+        </Style>
+
+        <Style TargetType="Label">
+            <Setter Property="FontSize" Value="Medium" />
+            <Setter Property="TextColor" Value="White" />
+        </Style>
+
+        <Style TargetType="Label" x:Key="LabelResultByte">
+            <Setter Property="FontSize" Value="Large"/>
+            <Setter Property="TextColor" Value="White" />
+            <Setter Property="FontAttributes" Value="Bold" />
+        </Style>
+
+        <Style TargetType="Label" x:Key="LabelBackTapped">
+            <Setter Property="FontSize" Value="Micro"/>
+            <Setter Property="TextColor" Value="LightGray"/>
+        </Style>
+
+    </Application.Resources>
+</Application>

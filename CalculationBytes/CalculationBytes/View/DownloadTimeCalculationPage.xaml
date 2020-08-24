@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:viewModels="clr-namespace:CalculationBytes.ViewModel" 
+             xmlns:local="clr-namespace:CalculationBytes.Converter"
+             xmlns:Tran="clr-namespace:CalculationBytes.Services.Markup;assembly=CalculationBytes"
+             mc:Ignorable="d"
+             x:Class="CalculationBytes.View.DownloadTimeCalculationPage">
+
+    <!--<ContentPage.BindingContext>
+        <viewModels:CalDownloadTimeViewModelPage/>
+    </ContentPage.BindingContext>-->
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local:ButtonTriggerConverter x:Key="dataHasBeenEntered" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout VerticalOptions="CenterAndExpand" Margin="20" Spacing="20">
+
+                <Frame Style="{StaticResource FrameTransparent}">
+                    <StackLayout>
+                        <Label Text="{Tran:Translate Name=file_size,ClassName=StringResource}" TextColor="White" FontAttributes="Bold" />
+                        <StackLayout Orientation="Horizontal">
+                            <Frame HorizontalOptions="FillAndExpand">
+                                <Entry x:Name="numberSize" Placeholder="{Tran:Translate Name=enter_number,ClassName=StringResource}" Text="{Binding NumberOfFileSize}" Keyboard="Numeric" MaxLength="10"/>
+                            </Frame>
+                            <Frame BorderColor="{Binding FrameFilePickerColor}">
+                                <Picker Title="{Tran:Translate Name=select_type,ClassName=StringResource}" FontSize="Small" WidthRequest="85" ItemsSource="{Binding FileSize}" ItemDisplayBinding="{Binding TypeSize}" 
+                                    SelectedItem="{Binding SelectFileType}" />
+                            </Frame>
+                        </StackLayout>
+                    </StackLayout>
+                </Frame>
+
+                <Frame Style="{StaticResource FrameTransparent}">
+                    <StackLayout>
+                        <Label Text="{Tran:Translate Name=internet_speed,ClassName=StringResource}" TextColor="White" FontAttributes="Bold" />
+                        <StackLayout Orientation="Horizontal">
+                            <Frame HorizontalOptions="FillAndExpand">
+                                <Entry x:Name="numberSpeed" Placeholder="{Tran:Translate Name=enter_number,ClassName=StringResource}" Text="{Binding NumberOfSpeed}" Keyboard="Numeric" MaxLength="10"/>
+                            </Frame>
+                            <Frame BorderColor="{Binding FrameSpeedPickerColor}">
+                                <Picker Title="{Tran:Translate Name=select_type,ClassName=StringResource}" FontSize="Small" WidthRequest="85" ItemsSource="{Binding SpeedSize}" ItemDisplayBinding="{Binding TypeSize}" 
+                                        SelectedItem="{Binding SelectSpeedType}" />
+                            </Frame>
+                        </StackLayout>
+                    </StackLayout>
+                </Frame>
+
+                <Frame>
+                    <Button Text="{Tran:Translate Name=calculate,ClassName=StringResource}" Command="{Binding Calculate_ClickCommand}" >
+                        <Button.Triggers>
+                            <MultiTrigger TargetType="Button">
+                                <MultiTrigger.Conditions>
+                                    <BindingCondition Binding="{Binding Source={x:Reference numberSize},Path=Text,Converter={StaticResource dataHasBeenEntered}}" Value="true"/>
+                                    <BindingCondition Binding="{Binding Source={x:Reference numberSpeed},Path=Text,Converter={StaticResource dataHasBeenEntered}}" Value="true"/>
+                                </MultiTrigger.Conditions>
+                                <Setter Property="IsEnabled" Value="True" />
+                            </MultiTrigger>
+                        </Button.Triggers>
+                    </Button>
+                </Frame>
+
+                <StackLayout Spacing="0" Margin="0,20,0,0">
+                    <Label Text="{Tran:Translate Name=download_time,ClassName=StringResource}" VerticalOptions="Center"/>
+                    <Frame Style="{StaticResource FrameTransparent}" Padding="15">
+                        <Label Text="{Binding DownLoadTIme}" FontSize="Large" VerticalOptions="Start" HorizontalOptions="CenterAndExpand"/>
+                    </Frame>
+                </StackLayout>
+
+                <StackLayout Spacing="0" Margin="0">
+                    <Label Text="{Tran:Translate Name=download_speed,ClassName=StringResource}" VerticalOptions="Center"/>
+                    <Frame Style="{StaticResource FrameTransparent}" Padding="15">
+                        <Label Text="{Binding SpeedPerSec}" FontSize="Large" VerticalOptions="Start" HorizontalOptions="CenterAndExpand"/>
+                    </Frame>
+                </StackLayout>
+                <!--<StackLayout Orientation="Horizontal">
+                    <Label Text="{Tran:Translate Name=download_speed,ClassName=StringResource}" VerticalOptions="Center"/>
+                    <Label Text="{Binding SpeedPerSec}" FontSize="Large" VerticalOptions="Start" HorizontalOptions="EndAndExpand"/>
+                </StackLayout>-->
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
