@@ -99,7 +99,7 @@ namespace CalculationBytes.ViewModel
 			for (int i = 1; i <= 6; i++)
 			{
 				var bt = dateTime.AddMinutes(-(90 * i + 15));
-				bedTimeList.Add(bt.ToString("h:mm tt", CultureInfo.CreateSpecificCulture("en-US")));
+				bedTimeList.Add(bt.ToString("h:mm tt", CultureInfo.CreateSpecificCulture("en-US"))); // Set CultureInfo ให้เป็น "en-US" เพื่อให้ format ของเวลาเป็นแบบ 12 Hours ที่มี AM/PM
 			}
 
 			bedTimeList.Reverse();
@@ -113,7 +113,7 @@ namespace CalculationBytes.ViewModel
 			for (int i = 1; i <= 6; i++)
 			{
 				var wu = dateTime.AddMinutes((90 * i + 15));
-				wakeUpTimeList.Add(wu.ToString("h:mm tt", CultureInfo.CreateSpecificCulture("en-US")));
+				wakeUpTimeList.Add(wu.ToString("h:mm tt", CultureInfo.CreateSpecificCulture("en-US"))); // Set CultureInfo ให้เป็น "en-US" เพื่อให้ format ของเวลาเป็นแบบ 12 Hours ที่มี AM/PM
 			}
 
 			WakeUpList = wakeUpTimeList;
