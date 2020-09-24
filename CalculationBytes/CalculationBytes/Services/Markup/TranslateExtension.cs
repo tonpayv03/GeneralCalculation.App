@@ -29,7 +29,11 @@ namespace CalculationBytes.Services.Markup
 		// จะได้ string ตามภาษา return กลับไปโชว์
 		public object ProvideValue(IServiceProvider serviceProvider)
 		{
-			string _namespace = typeof(TranslateExtension).Namespace.Substring(0,16);
+			// แบบ Get Assembly มาก่อน แล้วค่อยไป Get Name
+			var assembly = typeof(App).GetTypeInfo().Assembly;
+			string _namespace = assembly.GetName().Name;
+			//// แบบ Get ไปที่ Namespace แทน
+			//string _namespace = typeof(App).Namespace;
 			string _className = ClassName;
 
 			string _resourceId = _namespace + "." + ResourcePath + "." + _className;
