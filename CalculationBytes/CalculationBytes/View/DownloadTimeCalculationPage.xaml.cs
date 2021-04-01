@@ -18,6 +18,7 @@ namespace CalculationBytes.View
 			InitializeComponent();
 			BindingContext = new DownloadTimeCalculationViewModelPage();
 			// test
+			// test1
 		}
 	}
 }
